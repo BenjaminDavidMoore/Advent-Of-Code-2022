@@ -1,6 +1,7 @@
 const fs = require('fs');
 const data = fs.readFileSync('./input.txt', 'utf8');
 
+console.time('Problem 1');
 // Includes round outcome score and choice score. 
 const scoringKeyProb1 = {
     'A X': 3 + 1,
@@ -16,6 +17,14 @@ const scoringKeyProb1 = {
     'C Z': 3 + 3,
 }
 
+
+const rounds = data.split(/\n/);
+const problem1Score = rounds.reduce((score, round) => score + scoringKeyProb1[round], 0);
+console.timeEnd('Problem 1');
+
+console.log('Problem 1 Score:', problem1Score);
+
+console.time('Problem 2');
 const scoringKeyProb2 = {
                      // them -> you
     'A X': 0 + 3,    // rock -> scissors
@@ -30,11 +39,6 @@ const scoringKeyProb2 = {
     'C Y': 3 + 3,    // scissors -> scissors
     'C Z': 6 + 1,    // scissors -> rock
 }
-
-const rounds = data.split(/\n/);
-const problem1Score = rounds.reduce((score, round) => score + scoringKeyProb1[round], 0);
-
-console.log('Problem 1 Score:', problem1Score);
-
 const problem2Score = rounds.reduce((score, round) => score + scoringKeyProb2[round], 0);
 console.log('Problem 2 Score:', problem2Score);
+console.timeEnd('Problem 2');
